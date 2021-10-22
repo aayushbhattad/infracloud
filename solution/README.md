@@ -5,5 +5,12 @@
   2. Please run the gencsv.sh Script to generate the file inputFile
   3. Please run the below docker command to run the container
      docker run -d -p 9393:9300 --name INFRACLOUD -v /home/aayush/inputFile:/csvserver/inputdata:z -e CSVSERVER_BORDER=Orange -it docker.io/infracloudio/csvserver:latest
+	 
+## Part II
+
+   1. Running the attached docker-compose.yml
+      
+      docker-compose up -d
+      docker ps --all | grep -i infracloud	  
      
      
