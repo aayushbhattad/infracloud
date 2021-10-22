@@ -1,0 +1,33 @@
+# To Download Docker and Start the Service
+yum install docker
+systemctl restart docker
+
+# To Pull the Images
+docker pull infracloudio/csvserver:latest
+docker pull infracloudio/csvserver:latest
+
+# Executable Permission on Script and Running it
+[aayush@eaasrt6 ~]$ chmod +x gencsv.sh
+[aayush@eaasrt6 ~]$ ./gencsv.sh^C
+
+# Running the Docker Container
+docker run -d -p 9393:9300 --name INFRACLOUD -v /home/aayush/inputFile:/csvserver/inputdata:z -e CSVSERVER_BORDER=Orange -it docker.io/infracloudio/csvserver:latest
+
+# Finding the Docker Container in Running State
+docker ps --all | grep -i infracloud
+
+# Logging Inside the Container
+docker exec -it 0a241c294aed bash
+
+# Finding the Port on Which application is running
+[aayush@eaasrt6 ~]$ docker exec -it 0a241c294aed bash
+[root@0a241c294aed csvserver]# netstat -an
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp6       0      0 :::9300                 :::*                    LISTEN
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node   Path
+Active Bluetooth connections (servers and established)
+Proto  Destination       Source            State         PSM DCID   SCID      IMTU    OMTU Security
+Proto  Destination       Source            State     Channel
+[root@0a241c294aed csvserver]#
