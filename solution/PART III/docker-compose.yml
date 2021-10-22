@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  infracloud:
+    ports:
+      - "9393:9300"
+    volumes:
+      - /home/aayush/inputFile:/csvserver/inputdata
+    environment:
+      CSVSERVER_BORDER: Orange
+    image: "docker.io/infracloudio/csvserver"
+  prometheus:
+    image: "docker.io/prom/prometheus:v2.22.0"
+    ports:
+      - "9090:9090"
+    volumes:
+      - /home/aayush/prometheus.yml:/prometheus/prometheus.yml:z
+    command:
+      - '--config.file=/prometheus/prometheus.yml'
+    depends_on:
+      - infracloud
